@@ -3,6 +3,7 @@ const express = require('express');
 require('./db/mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 // Start express app
 const app = express();
@@ -13,16 +14,17 @@ const port = process.env.PORT || 5000;
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
-
+app.use(cookieParser());
 
 // Routers
+const userRouter = require('./routes/api/user');
 const locationRouter = require('./routes/api/location');
 
-app.use(locationRouter);
-
+app.use('/api', locationRouter);
+app.use('/api', userRouter);
 
 
 
 app.listen(port, () => {
-	console.log(`Server started on port ${port}`);
+	console.log(`Server running on port ${port}`);
 });
