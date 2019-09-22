@@ -24,12 +24,10 @@ class Stats {
 	static showFacts(user_id) {
 		return new Promise(async (resolve, reject) => {
 
-			// console.log(body);
 			try {
 				const response = await axios.post('http://localhost:5000/api/facts', { user_id });
 
 				resolve(response.data);
-				// console.log(response.data);
 			}
 			catch (error) {
 				reject(error);

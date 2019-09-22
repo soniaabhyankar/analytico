@@ -12,10 +12,7 @@
             We love to collect and analyse
             <span class="text-primary">data.</span>
           </h1>
-          <h1 class="mt-5 pt-5">
-            Want to know more?
-            <!-- <span class="text-primary">data.</span> -->
-          </h1>
+          <h1 class="mt-5 pt-5">Want to know more?</h1>
           <h1 class="mt-3">
             Fill up this quick
             <span class="text-primary">survey.</span>
@@ -38,7 +35,6 @@
 </template>
 
 <script>
-// import UserService from "../services/UserService";
 import uuidv4 from "uuid/v4";
 import SurveyForm from "../components/SurveyForm.vue";
 import CookieConsent from "../components/CookieConsent.vue";
@@ -61,9 +57,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#mapid {
-  height: 50vh;
-}
-</style>

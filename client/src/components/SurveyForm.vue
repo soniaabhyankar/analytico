@@ -40,7 +40,6 @@
           </div>
         </div>
         <div class="form-group mb-5">
-          <!-- <label class="col-form-label" for="inputDefault">Enter Religion</label> -->
           <legend class="text-secondary">Religion</legend>
           <input type="text" class="form-control" placeholder="Enter Religion" v-model="religion" />
         </div>

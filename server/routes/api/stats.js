@@ -7,24 +7,18 @@ router.post('/stats', async (req, res) => {
 	const features = Object.keys(req.body);
 
 	try {
-		console.log(features);
 		if ((features.includes('country')) && (features.includes('religion'))) {
 			const data = await User.countryReligion();
-			// console.log(data);
 			res.send(data);
 		}
 		else if (features.includes('country') && features.includes('gender')) {
 			const data = await User.countryGender();
 			res.send(data);
-
 		}
 		else {
 			const data = await User.religionGender();
 			res.send(data);
-
 		}
-		// console.log(data);
-		// res.status(201).send();
 	}
 	catch (error) {
 		res.status(400).send(error);
@@ -33,15 +27,16 @@ router.post('/stats', async (req, res) => {
 
 router.post('/facts', async (req, res) => {
 	const user_id = req.body.user_id;
-	// console.log(req.body.user_id);
+
 	try {
 		const user = await User.findUser(user_id);
-		// console.log(user);
+
 		const data = await User.facts(user.country, user.gender, user.religion);
 		res.send(data);
 	}
 	catch (error) {
 		res.status(400).send(error);
 	}
-})
+});
+
 module.exports = router;

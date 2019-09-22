@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const assert = require('assert');
 
 const userSchema = new mongoose.Schema({
 	user_id: {
@@ -55,22 +54,19 @@ userSchema.statics.facts = async (country, gender, religion) => {
 		gender: calcGender,
 		religion: calcReligion
 	}
-	// console.log(data);
 	return data;
 }
 
 userSchema.statics.countryReligion = async () => {
 
 	const countries = await User.distinct('country');
-	// console.log(countries);
 
 	const religions = await User.distinct('religion');
-	// console.log(religions);
 
 	var counts = { entries: [] };
 
 	for (let i = 0; i < countries.length; i++) {
-		let countryCount = await User.count({ country: countries[i] })
+		let countryCount = await User.countDocuments({ country: countries[i] })
 
 		counts.entries.push({
 			country: countries[i],
@@ -101,15 +97,13 @@ userSchema.statics.countryReligion = async () => {
 userSchema.statics.countryGender = async () => {
 
 	const countries = await User.distinct('country');
-	// console.log(countries);
 
 	const genders = await User.distinct('gender');
-	// console.log(genders);
 
 	var counts = { entries: [] };
 
 	for (let i = 0; i < countries.length; i++) {
-		let countryCount = await User.count({ country: countries[i] })
+		let countryCount = await User.countDocuments({ country: countries[i] })
 
 		counts.entries.push({
 			country: countries[i],
@@ -140,15 +134,13 @@ userSchema.statics.countryGender = async () => {
 userSchema.statics.religionGender = async () => {
 
 	const religions = await User.distinct('religion');
-	// console.log(religions);
 
 	const genders = await User.distinct('gender');
-	// console.log(genders);
 
 	var counts = { entries: [] };
 
 	for (let i = 0; i < religions.length; i++) {
-		let religionCount = await User.count({ religion: religions[i] })
+		let religionCount = await User.countDocuments({ religion: religions[i] })
 
 		counts.entries.push({
 			religion: religions[i],
@@ -175,6 +167,7 @@ userSchema.statics.religionGender = async () => {
 	}
 	return counts;
 }
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

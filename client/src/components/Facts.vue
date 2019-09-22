@@ -34,9 +34,8 @@ export default {
   computed: {
     async showFacts() {
       const user_id = window.$cookies.get("user_id");
-      console.log("user id ", user_id);
+
       this.facts = await StatsService.showFacts(user_id);
-      console.log("facts ", this.facts);
     }
   }
 };

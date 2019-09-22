@@ -32,7 +32,7 @@ export default {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
         const long = position.coords.longitude;
-        // console.log(lat, long);
+
         this.center = [lat, long];
         this.marker = [lat, long];
       });

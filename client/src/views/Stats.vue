@@ -154,13 +154,6 @@
         </table>
       </div>
     </div>
-    <!-- <div class="row my-5 text-center">
-      <div class="col-12">
-        <h3 class="text-secondary mt-5">You can also download all of these stats</h3>
-        <h3 class="text-secondary mt-3 mb-4">👇</h3>
-        <button v-on:click="downloadPDF" type="button" class="btn btn-primary btn-lg">Download PDF</button>
-      </div>
-    </div>-->
     <Footer />
   </div>
 </template>
@@ -172,8 +165,6 @@ import Map from "../components/Map.vue";
 import Facts from "../components/Facts.vue";
 import StatsService from "../services/StatsService";
 import Footer from "../components/Footer.vue";
-import jspdf from "jspdf";
-import html2canvas from "html2canvas";
 
 export default {
   name: "Stats",
@@ -192,16 +183,6 @@ export default {
       res: [],
       counts: []
     };
-  },
-  methods: {
-    downloadPDF() {
-      var pdf = new jspdf();
-
-      const contentHTML = this.$refs.content.innerHTML;
-
-      pdf.addHTML(contentHTML, function() {});
-      pdf.save("stats.pdf");
-    }
   },
   computed: {
     async showStats() {
@@ -227,12 +208,10 @@ export default {
         this.rg = true;
       }
       this.res = await StatsService.showStats(this.checked);
-      // console.log(this.res);
     },
     countryReligion: function() {
       var userCount = 0;
       this.counts = [];
-      // var countryStats = [];
 
       for (let i = 0; i < this.res.length; i++) {
         userCount += this.res[i].countryCount;
@@ -259,15 +238,11 @@ export default {
           });
         }
       }
-
-      // this.counts = countryStats.slice(0);
       return this.counts;
     },
     countryGender: function() {
       var userCount = 0;
       this.counts = [];
-
-      // var countryStats = [];
 
       for (let i = 0; i < this.res.length; i++) {
         userCount += this.res[i].countryCount;
@@ -294,15 +269,11 @@ export default {
           });
         }
       }
-
-      // this.counts = countryStats.slice(0);
       return this.counts;
     },
     religionGender: function() {
       var userCount = 0;
       this.counts = [];
-
-      // var countryStats = [];
 
       for (let i = 0; i < this.res.length; i++) {
         userCount += this.res[i].religionCount;
@@ -329,8 +300,6 @@ export default {
           });
         }
       }
-
-      // this.counts = countryStats.slice(0);
       return this.counts;
     }
   }
