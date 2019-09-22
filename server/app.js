@@ -19,9 +19,11 @@ app.use(cookieParser());
 // Routers
 const userRouter = require('./routes/api/user');
 const locationRouter = require('./routes/api/location');
+const statsRouter = require('./routes/api/stats');
 
 app.use('/api', locationRouter);
 app.use('/api', userRouter);
+app.use('/api', statsRouter);
 
 
 

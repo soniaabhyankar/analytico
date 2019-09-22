@@ -1,11 +1,39 @@
 <template>
-  <div class="home">
+  <div>
     <div class="container">
-      <h1>Stats App</h1>
-      <h3>Take this survey to help us</h3>
-      <SurveyForm />
+      <div class="row">
+        <div class="col-12">
+          <h1 class="text-center display-1 text-primary font-weight-bold my-3">Analytico</h1>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12 mx-auto text-center">
+          <h1 class="display-4 mt-5">
+            We love to collect and analyse
+            <span class="text-primary">data.</span>
+          </h1>
+          <h1 class="mt-5 pt-5">
+            Want to know more?
+            <!-- <span class="text-primary">data.</span> -->
+          </h1>
+          <h1 class="mt-3">
+            Fill up this quick
+            <span class="text-primary">survey.</span>
+          </h1>
+        </div>
+      </div>
+      <div class="row mt-5 justify-content-center">
+        <div class="col-md-6 offset-md-3 align-self-center">
+          <SurveyForm />
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-6 mx-auto">
+          <CookieConsent />
+        </div>
+      </div>
     </div>
-    <CookieConsent />
+    <Footer />
   </div>
 </template>
 
@@ -14,17 +42,28 @@
 import uuidv4 from "uuid/v4";
 import SurveyForm from "../components/SurveyForm.vue";
 import CookieConsent from "../components/CookieConsent.vue";
+import Footer from "../components/Footer.vue";
 
 export default {
-  name: "home",
+  name: "Home",
   components: {
     SurveyForm,
-    CookieConsent
+    CookieConsent,
+    Footer
   },
+
   async created() {
     try {
       await this.$cookies.set("user_id", uuidv4(), 24000);
-    } catch (err) {}
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 };
 </script>
+
+<style>
+#mapid {
+  height: 50vh;
+}
+</style>

@@ -1,9 +1,9 @@
 <template>
-  <div class="card border-primary mb-3" style="max-width: 20rem;">
+  <div class="card border-primary mb-5" style="max-width: 20rem;">
     <div class="card-body">
       <form v-on:submit.prevent="formSubmit">
-        <div class="form-group">
-          <legend>Gender</legend>
+        <div class="form-group mb-4">
+          <legend class="text-secondary">Gender</legend>
           <div class="custom-control custom-radio">
             <input
               type="radio"
@@ -39,15 +39,14 @@
             <label class="custom-control-label" for="non-binary">Non-binary</label>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group mb-5">
           <!-- <label class="col-form-label" for="inputDefault">Enter Religion</label> -->
-          <legend>Religion</legend>
+          <legend class="text-secondary">Religion</legend>
           <input type="text" class="form-control" placeholder="Enter Religion" v-model="religion" />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary py-2 px-5">Submit</button>
       </form>
     </div>
-    {{gender}}{{religion}}
   </div>
 </template>
 
@@ -67,6 +66,8 @@ export default {
       const user_id = this.$cookies.get("user_id");
 
       UserService.createUser(user_id, this.gender, this.religion);
+
+      this.$router.push("stats");
     }
   }
 };
