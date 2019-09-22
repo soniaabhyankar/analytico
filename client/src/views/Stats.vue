@@ -89,16 +89,16 @@
             </tr>
           </thead>
           <tbody>
-            <span v-show="false">{{countryReligion}}</span>
+            <span v-show="false">{{ countryReligion }}</span>
             <tr v-for="(count, index) in counts" :key="index" :item="count">
               <td>
-                {{count.country}}
-                <span class="text-primary">({{count.percentage}}%)</span>
+                {{ count.country }}
+                <span class="text-primary">({{ count.percentage }}%)</span>
               </td>
               <td>
                 <tr v-for="(cnt, i) in count.religions" :key="i" :item="cnt">
-                  {{cnt.religion}}
-                  <span class="text-primary">({{cnt.percentage}}%)</span>
+                  {{ cnt.religion }}
+                  <span class="text-primary">({{ cnt.percentage }}%)</span>
                 </tr>
               </td>
             </tr>
@@ -113,16 +113,16 @@
             </tr>
           </thead>
           <tbody>
-            <span v-show="false">{{countryGender}}</span>
+            <span v-show="false">{{ countryGender }}</span>
             <tr v-for="(count, index) in counts" :key="index" :item="count">
               <td>
-                {{count.country}}
-                <span class="text-primary">({{count.percentage}}%)</span>
+                {{ count.country }}
+                <span class="text-primary">({{ count.percentage }}%)</span>
               </td>
               <td>
                 <tr class="text-capitalize" v-for="(cnt, i) in count.genders" :key="i" :item="cnt">
-                  {{cnt.gender}}
-                  <span class="text-primary">({{cnt.percentage}}%)</span>
+                  {{ cnt.gender }}
+                  <span class="text-primary">({{ cnt.percentage }}%)</span>
                 </tr>
               </td>
             </tr>
@@ -137,16 +137,16 @@
             </tr>
           </thead>
           <tbody>
-            <span v-show="false">{{religionGender}}</span>
+            <span v-show="false">{{ religionGender }}</span>
             <tr v-for="(count, index) in counts" :key="index" :item="count">
               <td>
-                {{count.religion}}
-                <span class="text-primary">({{count.percentage}}%)</span>
+                {{ count.religion }}
+                <span class="text-primary">({{ count.percentage }}%)</span>
               </td>
               <td>
                 <tr class="text-capitalize" v-for="(cnt, i) in count.genders" :key="i" :item="cnt">
-                  {{cnt.gender}}
-                  <span class="text-primary">({{cnt.percentage}}%)</span>
+                  {{ cnt.gender }}
+                  <span class="text-primary">({{ cnt.percentage }}%)</span>
                 </tr>
               </td>
             </tr>
@@ -166,6 +166,8 @@
 </template>
 
 <script>
+/* eslint-disable */
+
 import Map from "../components/Map.vue";
 import Facts from "../components/Facts.vue";
 import StatsService from "../services/StatsService";
@@ -192,6 +194,16 @@ export default {
     };
   },
   methods: {
+    downloadPDF() {
+      var pdf = new jspdf();
+
+      const contentHTML = this.$refs.content.innerHTML;
+
+      pdf.addHTML(contentHTML, function() {});
+      pdf.save("stats.pdf");
+    }
+  },
+  computed: {
     async showStats() {
       this.selected = true;
       this.res = [];
@@ -217,16 +229,6 @@ export default {
       this.res = await StatsService.showStats(this.checked);
       // console.log(this.res);
     },
-    downloadPDF() {
-      var pdf = new jspdf();
-
-      const contentHTML = this.$refs.content.innerHTML;
-
-      pdf.addHTML(contentHTML, function() {});
-      pdf.save("stats.pdf");
-    }
-  },
-  computed: {
     countryReligion: function() {
       var userCount = 0;
       this.counts = [];

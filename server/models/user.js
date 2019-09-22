@@ -5,17 +5,20 @@ const userSchema = new mongoose.Schema({
 	user_id: {
 		type: String,
 		required: true,
-		trim: true
+		trim: true,
+		unique: true
 	},
 	gender: {
 		type: String,
 		required: true,
-		trim: true
+		trim: true,
+		default: 'Male'
 	},
 	religion: {
 		type: String,
 		required: true,
-		trim: true
+		trim: true,
+		default: 'Hindu'
 	},
 	country: {
 		type: String,

@@ -34,7 +34,7 @@ class Stats {
 			catch (error) {
 				reject(error);
 			}
-		})
+		});
 	}
 }
 
